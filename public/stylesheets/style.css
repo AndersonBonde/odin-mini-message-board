@@ -40,3 +40,74 @@ ul {
   padding: 6px;
   border-radius: 8px;
 }
+
+.comment-button {
+  display: inline-block;
+  background-color: #eee;
+  text-decoration: none;
+  color: black;
+  padding: 8px 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+.comment-button:hover {
+  background-color: #bbb;
+}
+
+/* Form */
+
+form > header {
+  margin-bottom: 1rem;
+}
+
+form h1 {
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+}
+
+.field > label {
+  display: inline-block;
+  width: 60px;
+  margin-bottom: 6px;
+}
+
+#name {
+  flex: 1;
+}
+
+#message {
+  flex: 1;
+  padding: 4px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+#name:hover,
+#message:hover {
+  background-color: #eee;
+}
+
+.form-button {
+  display: flex;
+  justify-content: right;
+}
+
+form button {
+  padding: 6px 12px;
+  margin-top: 1rem;
+}
+
+form button:hover {
+  cursor: pointer;
+}
