@@ -7,5 +7,22 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <ul class="messages">
+      <% messages.forEach((message) => { %>
+        <li class="message">
+          <div class="message-header">
+            <div class="message-user">
+              <%- message.user %>
+            </div>
+            <div class="message date">
+              <%- message.added %>
+            </div>
+          </div>
+          <div class="message-text">
+            <%= message.text %>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
   </body>
 </html>
