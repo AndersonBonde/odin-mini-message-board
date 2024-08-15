@@ -8,13 +8,21 @@ router.get('/', async (req, res) => {
   res.render('index', { title: 'Mini Message Board', messages: messages, });
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', (req, res) => {
   res.render('form');
 });
 
-router.post('/new', (req, res, next) => {
-  const { name, message } = req.body;
-  messages.push({ text: message, user: name, added: new Date() });
+router.post('/new', async (req, res) => {
+  const { name: username, message } = req.body;
+
+  await db.insertMessage(username, message);
+
+  res.redirect('/');
+});
+
+router.post('/:id/delete', async (req, res) => {
+  await db.deleteMessage(req.params.id);
+
   res.redirect('/');
 });
 
