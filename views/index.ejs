@@ -8,21 +8,23 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <ul class="messages">
-      <% messages.forEach((message) => { %>
-        <li class="message">
-          <div class="message-header">
-            <div class="message-user">
-              <%- message.user %>
+      <% if (locals.messages) { %>
+        <% messages.forEach((message) => { %>
+          <li class="message">
+            <div class="message-header">
+              <div class="message-user">
+                <%- message.username %>
+              </div>
+              <div class="message date">
+                <%- message.timestamp %>
+              </div>
             </div>
-            <div class="message date">
-              <%- message.added %>
+            <div class="message-text">
+              <%= message.message %>
             </div>
-          </div>
-          <div class="message-text">
-            <%= message.text %>
-          </div>
-        </li>
-      <% }); %>
+          </li>
+        <% }); %>
+      <% } %>
     </ul>
     <a class="comment-button" href="./new">Leave a comment</a>
   </body>
