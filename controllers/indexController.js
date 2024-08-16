@@ -1,4 +1,14 @@
+const { body, validationResult } = require('express-validator');
 const db = require('../database/queries');
+
+const lengthErr = 'must not be empty';
+
+const validateMessage = [
+  body('name').trim()
+    .isLength({ min: 1 }).withMessage(`Name ${lengthErr}`),
+  body('message').trim()
+    .isLength({ min: 1 }).withMessage(`Message ${lengthErr}`),
+];
 
 const messagesListGet = async (req, res) => {
   const messages = await db.getAllMessages();
@@ -10,13 +20,27 @@ const messageCreateGet = (req, res) => {
   res.render('form');
 };
 
-const messageCreatePost = async (req, res) => {
-  const { name: username, message } = req.body;
+const messageCreatePost = [
+  validateMessage,
+  async (req, res) => {
+    const errors = validationResult(req);
 
-  await db.insertMessage(username, message);
+    if (!errors.isEmpty()) {
+      const { name, message } = req.body;
 
-  res.redirect('/');
-};
+      return res.status(400).render('form', {
+        name,
+        message,
+        errors: errors.array(),
+      });
+    }
+
+    const { name: username, message } = req.body;  
+    await db.insertMessage(username, message);
+  
+    res.redirect('/');
+  }
+]
 
 const messageDeletePost = async (req, res) => {
   await db.deleteMessage(req.params.id);
