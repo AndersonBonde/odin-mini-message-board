@@ -7,6 +7,13 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 2rem;
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+h1,
+p {
+  text-align: center;
 }
 
 ul {
@@ -59,11 +66,6 @@ ul {
 
 form > header {
   margin-bottom: 1rem;
-}
-
-form h1 {
-  font-size: 1.35rem;
-  text-align: center;
 }
 
 .fields {
