@@ -17,7 +17,7 @@ const messagesListGet = async (req, res) => {
 };
 
 const messageCreateGet = (req, res) => {
-  res.render('form');
+  res.render('form', { title: 'New Message' });
 };
 
 const messageCreatePost = [
@@ -31,6 +31,7 @@ const messageCreatePost = [
       return res.status(400).render('form', {
         name,
         message,
+        title: 'New Message',
         errors: errors.array(),
       });
     }

@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New message</title>
+  <title><%= title %>></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
   <form action="/new" method="post">
     <header>
-      <h1>
-        Leave a message
-      </h1>
+      <h1><%= title %></h1>
     </header>
     <div class="fields">
       <%- include('partials/errors.ejs') %>
