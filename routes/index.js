@@ -1,29 +1,10 @@
 const { Router } = require('express');
 const router = Router();
-const db = require('../database/queries');
+const indexController = require('../controllers/indexController');
 
-router.get('/', async (req, res) => {
-  const messages = await db.getAllMessages();
-
-  res.render('index', { title: 'Mini Message Board', messages: messages, });
-});
-
-router.get('/new', (req, res) => {
-  res.render('form');
-});
-
-router.post('/new', async (req, res) => {
-  const { name: username, message } = req.body;
-
-  await db.insertMessage(username, message);
-
-  res.redirect('/');
-});
-
-router.post('/:id/delete', async (req, res) => {
-  await db.deleteMessage(req.params.id);
-
-  res.redirect('/');
-});
+router.get('/', indexController.messagesListGet);
+router.get('/new', indexController.messageCreateGet);
+router.post('/new', indexController.messageCreatePost);
+router.post('/:id/delete', indexController.messageDeletePost);
 
 module.exports = router;
